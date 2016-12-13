@@ -189,7 +189,7 @@ def initialize():
 		ref.ref[ha.LSR] += 0.01
 		i += 0.5
 		r.put(ref)
-		time.sleep(.01)
+		simSleep(.01)
 	print("ROBOT - initialize() done")
 
 #crouch the robot		
@@ -204,7 +204,7 @@ def init_ready():
 		ref.ref[ha.LHP] = -i
 		r.put(ref)
 		i += 0.05
-		time.sleep(0.5)
+		simSleep(0.5)
 	print ("ROBOT - init_ready() done")
 		
 # lean the robot forward
@@ -217,7 +217,7 @@ def init_lean():
 		ref.ref[ha.LHR] = -i
 		r.put(ref)
 		i += 0.01
-		time.sleep(.5)
+		simSleep(.5)
 	print("ROBOT - init_lean() done")
 	
 def init_done(joint_final):
@@ -228,7 +228,7 @@ def init_done(joint_final):
 		ref.ref[ha.RHP] = -i
 		r.put(ref)
 		i += 0.05
-		time.sleep(.5)
+		simSleep(.5)
 
 	joint_final[RAP_final] = ref.ref[ha.RAP]
 	joint_final[RKN_final] = ref.ref[ha.RKN]
@@ -254,7 +254,7 @@ def right_step():
 		ref.ref[ha.RAP] += 0.005
 		i += 0.005
 		r.put(ref)
-		time.sleep(.05)
+		simSleep(.05)
 
 	right_leg = three_dof(ref.ref[ha.LHP],ref.ref[ha.LHP], ref.ref[ha.LKN])
 	left_leg = three_dof(ref.ref[ha.RHP],ref.ref[ha.RHP],ref.ref[ha.RKN])
@@ -266,10 +266,10 @@ def right_step():
 		ref.ref[ha.LKN] += 0.0001
 		ref.ref[ha.LHP] -= 0.00005
 		r.put(ref)
-		time.sleep(.00005)
+		simSleep(.00005)
 		right_leg = three_dof(ref.ref[ha.LHP],ref.ref[ha.LHP], ref.ref[ha.LKN])
 		left_leg = three_dof(ref.ref[ha.RHP],ref.ref[ha.RHP],ref.ref[ha.RKN])
-		time.sleep(.0005)
+		simSleep(.0005)
 		
 	print("ROBOT - right_step() done")
 
@@ -285,7 +285,7 @@ def left_step():
 		ref.ref[ha.LAP] += 0.005
 		i += 0.005
 		r.put(ref)
-		time.sleep(.05)
+		simSleep(.05)
 
 	left_leg = three_dof(ref.ref[ha.RHP],ref.ref[ha.RHP],ref.ref[ha.RKN])
 	right_leg = three_dof(ref.ref[ha.LHP],ref.ref[ha.LHP], ref.ref[ha.LKN])	
@@ -296,10 +296,10 @@ def left_step():
 		ref.ref[ha.RKN] += 0.0001
 		ref.ref[ha.RHP] -= 0.00005
 		r.put(ref)
-		time.sleep(.00005)
+		simSleep(.00005)
 		left_leg = three_dof(ref.ref[ha.RHP],ref.ref[ha.RHP],ref.ref[ha.RKN])
 		right_leg = three_dof(ref.ref[ha.LHP],ref.ref[ha.LHP], ref.ref[ha.LKN])
-		time.sleep(.0005)
+		simSleep(.0005)
 		
 	print("ROBOT - left_step() done")
 	
@@ -329,15 +329,15 @@ def shift_right_weight():
 			ref.ref[ha.LAR] -= rate_r
 			ref.ref[ha.RHR] += rate_r
 			ref.ref[ha.LHR] += rate_r
-		time.sleep(0.0001)
+		simSleep(0.0001)
 		r.put(ref)		
-		time.sleep(0.5)
+		simSleep(0.5)
 
 	while ref.ref[ha.LHP] > -0.75:
 		ref.ref[ha.LHP] -= 0.01
 		ref.ref[ha.LKN] += 0.01
 		r.put(ref)
-	time.sleep(.1)
+	simSleep(.1)
 	
 	print("ROBOT - shift_right_weight() done")
 
@@ -367,22 +367,22 @@ def shift_left_weight():
 			ref.ref[ha.RAR] += rate_r
 			ref.ref[ha.LHR] -= rate_r
 			ref.ref[ha.RHR] -= rate_r
-			time.sleep(0.0001)
+			simSleep(0.0001)
 			r.put(ref)
-			time.sleep(0.5)
+			simSleep(0.5)
 
 	while ref.ref[ha.RHP] > -.75:
 		ref.ref[ha.RHP] -= 0.01
 		ref.ref[ha.RAP] -= 0.01
 		ref.ref[ha.RKN] += 0.01
 		r.put(ref)
-		time.sleep(.1)
+		simSleep(.1)
 		
 	print("ROBOT - shift_left_weight() done")
 
 # fix the robot to initial ready position	
 def get_ready_right(joint_final):
-	time.sleep(5)
+	simSleep(5)
 	check_one = 0
 	check_two = 0
 	check_three = 0
@@ -427,7 +427,7 @@ def get_ready_right(joint_final):
 		else:
 			check_two = 1
 		r.put(ref)
-		time.sleep(.01)
+		simSleep(.01)
 
 	joint_final[RAP_final] = ref.ref[ha.RAP]
 	joint_final[RKN_final] = ref.ref[ha.RKN]
@@ -444,7 +444,7 @@ def get_ready_right(joint_final):
 
 #fix the robot to an initial ready positiion
 def get_ready_left(joint_final):
-	time.sleep(5)
+	simSleep(5)
 	check_one = 0
 	check_two = 0
 	check_three = 0
@@ -489,7 +489,7 @@ def get_ready_left(joint_final):
 		else:
 			check_two = 1
 		r.put(ref)
-		time.sleep(.01)
+		simSleep(.01)
 
 	joint_final[RAP_final] = ref.ref[ha.RAP]
 	joint_final[RKN_final] = ref.ref[ha.RKN]
@@ -513,7 +513,7 @@ def stand():
 	ref.ref[ha.RHP] = 0
 	ref.ref[ha.LHP] = 0
 	r.put(ref)
-	time.sleep(0.5)
+	simSleep(0.5)
 	print("ROBOT - stand() done")
 
 count = 0
@@ -556,4 +556,4 @@ e_check = forward_kinematics(params)
 print(e_check)
 #assign_thetas(params,0)
 assign_thetas(params,1)
-time.sleep(10)
+simSleep(10)
