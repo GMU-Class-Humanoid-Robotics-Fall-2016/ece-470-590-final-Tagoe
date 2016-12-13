@@ -189,7 +189,7 @@ def initialize():
 		ref.ref[ha.LSR] += 0.01
 		i += 0.5
 		r.put(ref)
-		simSleep(.01)
+		simSleep(.1)
 	print("ROBOT - initialize() done")
 
 #crouch the robot		
@@ -204,7 +204,7 @@ def init_ready():
 		ref.ref[ha.LHP] = -i
 		r.put(ref)
 		i += 0.05
-		simSleep(0.5)
+		simSleep(0.1)
 	print ("ROBOT - init_ready() done")
 		
 # lean the robot forward
@@ -228,7 +228,7 @@ def init_done(joint_final):
 		ref.ref[ha.RHP] = -i
 		r.put(ref)
 		i += 0.05
-		simSleep(.5)
+		simSleep(.1)
 
 	joint_final[RAP_final] = ref.ref[ha.RAP]
 	joint_final[RKN_final] = ref.ref[ha.RKN]
@@ -285,7 +285,7 @@ def left_step():
 		ref.ref[ha.LAP] += 0.005
 		i += 0.005
 		r.put(ref)
-		simSleep(.05)
+		simSleep(.1)
 
 	left_leg = three_dof(ref.ref[ha.RHP],ref.ref[ha.RHP],ref.ref[ha.RKN])
 	right_leg = three_dof(ref.ref[ha.LHP],ref.ref[ha.LHP], ref.ref[ha.LKN])	
@@ -369,7 +369,7 @@ def shift_left_weight():
 			ref.ref[ha.RHR] -= rate_r
 			simSleep(0.0001)
 			r.put(ref)
-			simSleep(0.5)
+			simSleep(0.1)
 
 	while ref.ref[ha.RHP] > -.75:
 		ref.ref[ha.RHP] -= 0.01
@@ -489,7 +489,7 @@ def get_ready_left(joint_final):
 		else:
 			check_two = 1
 		r.put(ref)
-		simSleep(.01)
+		simSleep(.1)
 
 	joint_final[RAP_final] = ref.ref[ha.RAP]
 	joint_final[RKN_final] = ref.ref[ha.RKN]
@@ -513,7 +513,7 @@ def stand():
 	ref.ref[ha.RHP] = 0
 	ref.ref[ha.LHP] = 0
 	r.put(ref)
-	simSleep(0.5)
+	simSleep(0.1)
 	print("ROBOT - stand() done")
 
 count = 0
@@ -556,4 +556,3 @@ e_check = forward_kinematics(params)
 print(e_check)
 #assign_thetas(params,0)
 assign_thetas(params,1)
-simSleep(10)
