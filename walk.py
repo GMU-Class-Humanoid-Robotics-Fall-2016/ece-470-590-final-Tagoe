@@ -545,7 +545,7 @@ while count < 16:
 stand()		
 print("DONE")
 
-initial_params = np.array([[0,0,i1.79,math.pi/2],[0,0,1.82,0],[0,0,0.6,0],[0,0,0.2,0]])
+initial_params = np.array([[0,0,1.79,math.pi/2],[0,0,1.82,0],[0,0,0.6,0],[0,0,0.2,0]])
 #assign_thetas(initial_params)
 init_e = forward_kinematics(initial_params)
 print(init_e)
